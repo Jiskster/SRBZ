@@ -48,7 +48,7 @@ SRBZ.sprint_thinker = function(player)
 	local decrement = FRACUNIT>>1
 	
 	if player.zteam == 1 then
-		if (player.speed > 5*FRACUNIT) and (cmd.buttons & BT_CUSTOM1) and ((player.mo.state!=S_PLAY_GLIDE) or (player.mo.state!=S_PLAY_BOUNCE)) then
+		if (player.speed > 5*FRACUNIT) and (cmd.buttons & BT_CUSTOM1) and ((player.mo.state!=S_PLAY_GLIDE) and (player.mo.state!=S_PLAY_BOUNCE) and (player.mo.state!=S_PLAY_BOUNCE_LANDING)) then
 			
 			player.sprintmeter = $ - decrement
 			if player.sprintmeter - decrement < 0 then
