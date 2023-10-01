@@ -43,8 +43,10 @@ SRBZ.infohud = function(v, player)
 			
 			-- [Sprint Meter] --
 			if player.sprintmeter ~= nil and player.zteam == 1 then
+				v.draw(0, 168, v.cachePatch("STSPRNTB"), (V_SNAPTOBOTTOM|V_SNAPTOLEFT))
+				v.drawFill(2, 170, FixedInt(player.sprintmeter>>1), 4, 136|V_SNAPTOBOTTOM|V_SNAPTOLEFT)
 				local sprintmeter = L_FixedDecimal(player.sprintmeter,1).."%"
-				customhud.CustomFontString(v, 0, 168, "Run: "..sprintmeter, "TNYFC", 
+				customhud.CustomFontString(v, 0, 160, "Run: "..sprintmeter, "TNYFC", 
 				(V_SNAPTOBOTTOM|V_SNAPTOLEFT), nil , nil, SKINCOLOR_SKY)
 			end
 			
