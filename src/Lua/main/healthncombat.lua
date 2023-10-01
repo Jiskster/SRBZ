@@ -229,6 +229,16 @@ addHook("PreThinkFrame", function()
 			else
 				player["srbz_info"].pressednext = false	
 			end
+
+			--make keyboard weapon keys work for inventory selection
+			if (cmd.buttons & BT_WEAPONMASK >=1 and cmd.buttons & BT_WEAPONMASK<=5) and (not player.choosing) then
+				if not player["srbz_info"].pressedbtn then
+					player["srbz_info"].inventory_selection=cmd.buttons&BT_WEAPONMASK
+					S_StartSound(nil,sfx_mnu1a,player)
+				end
+				player["srbz_info"].pressedbtn = true
+			else player["srbz_info"].pressedbtn = false end
+			--^^^ make a proper replacement for this if you're gonna remove it again ^^^
 			
 			-- try shoot
 			if (cmd.buttons & BT_ATTACK) and not player["srbz_info"].weapondelay 
