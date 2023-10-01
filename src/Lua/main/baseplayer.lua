@@ -44,11 +44,11 @@ SRBZ.sprint_thinker = function(player)
 	local pmo = player.mo
 	local cc = SRBZ.CharacterConfig
 	
-	local increment = FRACUNIT/4
-	local decrement = FRACUNIT/2
+	local increment = FRACUNIT>>2
+	local decrement = FRACUNIT>>1
 	
 	if player.zteam == 1 then
-		if (player.speed > 5*FRACUNIT) and (cmd.buttons & BT_CUSTOM1) then
+		if (player.speed > 5*FRACUNIT) and (cmd.buttons & BT_CUSTOM1) and ((player.mo.state!=S_PLAY_GLIDE) or (player.mo.state!=S_PLAY_BOUNCE)) then
 			
 			player.sprintmeter = $ - decrement
 			if player.sprintmeter - decrement < 0 then
