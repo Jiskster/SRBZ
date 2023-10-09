@@ -71,7 +71,7 @@ SRBZ.ShopkeeperList={
         ["color"]=SKINCOLOR_COBALT,
         ["phrases"]={
             "*CLIENT DETECTED. ACTIVATING SHOP*",
-            "*ENTRING SELLING MODE*",
+            "*ENTERING SELLING MODE*",
             "*I AM THE REAL SONIC!*"
         }
     },
