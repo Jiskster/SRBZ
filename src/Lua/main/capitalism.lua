@@ -1,4 +1,6 @@
 freeslot("MT_CRRUBY","S_CRRUBY","SPR_RBY1", "sfx_rbyhit") -- idk what CR means but i just slap it there
+freeslot("MT_RUBY_BOX","MT_RUBY_ICON", "S_RUBY_BOX", "S_RUBY_ICON1", 
+		"S_RUBY_ICON2", "SPR_RBYM")
 
 SRBZ.RubyLimit = 500000;
 
@@ -40,7 +42,43 @@ states[S_CRRUBY] = {
 	nextstate = S_CRRUBY,
 }
 
-sfxinfo[sfx_rbyhit].caption="Ruby"
+mobjinfo[MT_RUBY_BOX] = {
+	--$Name Ruby Monitor
+	--$Sprite RBYMA0
+	--$Category Monitors
+	doomednum = 863,
+	spawnstate = S_RUBY_BOX,
+	reactiontime = 8,
+	painstate = S_RUBY_BOX,
+	deathstate = S_BOX_POP1,
+	deathsound = sfx_pop,
+	speed = 1,
+	radius = 18*FRACUNIT,
+	height = 40*FRACUNIT,
+	mass = 100,
+	damage = MT_RUBY_ICON,
+	flags = MF_SOLID|MF_SHOOTABLE|MF_MONITOR
+}
+
+mobjinfo[MT_RUBY_ICON] = {
+	doomednum = -1,
+	spawnstate = S_RUBY_ICON1,
+	seesound = sfx_kc54,
+	reactiontime = 8,
+	deathsound = sfx_pop,
+	speed = 2*FRACUNIT,
+	radius = 8*FRACUNIT,
+	height = 14*FRACUNIT,
+	mass = 100,
+	damage = 62*FRACUNIT,
+	flags = MF_NOBLOCKMAP|MF_NOGRAVITY|MF_NOCLIP|MF_BOXICON|MF_SCENERY
+}
+
+states[S_RUBY_BOX] = {SPR_RBYM, A, 2, nil, 0, 0, S_BOX_FLICKER}
+states[S_RUBY_ICON1] = {SPR_RBYM, C|FF_ANIMATE, 18, nil, 3, 4, S_RUBY_ICON2}
+states[S_RUBY_ICON2] = {SPR_RBYM, C, 18, A_RubyDrop, 10}
+
+sfxinfo[sfx_rbyhit].caption = "Ruby"
 
 addHook("PlayerThink", function(player)
 	player.rubies = $ or 0

@@ -178,6 +178,9 @@ function SRBZ.DoPlayerFire(player, iteminfo)
 	end
 
 	if ring then
+	
+		ring.shotbyplayer = true
+		
 		if iteminfo.color ~= nil then
 			ring.color = iteminfo.color
 		end 
@@ -485,6 +488,16 @@ COM_AddCommand("z_sellhand", function(player)
 		CONS_Printf(player, "\x85\This item is unsellable!")
 	else -- Nothing in slot at all
 		CONS_Printf(player, "\x85\Blank inventory slot!")
+	end
+end)
+
+addHook("MobjMoveCollide", function(tmthing, thing)
+	if tmthing and tmthing.valid and thing and thing.valid then
+		if tmthing.shotbyplayer and thing.flags & MF_MONITOR then
+			P_KillMobj(thing, tmthing, tmthing.target)
+			S_StartSound(tmthing, sfx_pop)
+			P_RemoveMobj(thing)
+		end
 	end
 end)
 
