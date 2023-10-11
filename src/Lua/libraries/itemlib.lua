@@ -64,7 +64,7 @@ end
 
 function SRBZ:FetchInventorySlot(player)
 	if player and player.valid then
-		if player["srbz_info"] then
+		if player["srbz_info"] and player["srbz_info"].inventory_selection then
 			return SRBZ:FetchInventory(player)[player["srbz_info"].inventory_selection] 
 		end
 	end

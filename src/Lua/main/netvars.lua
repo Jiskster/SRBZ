@@ -23,3 +23,4 @@ addHook("NetVars", function(net)
 		v.time = net($);
 	end
 end)
+

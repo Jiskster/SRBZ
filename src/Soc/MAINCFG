@@ -1,5 +1,9 @@
 MainCfg
 GameData = SRBZ.dat
+DemoDelayTime = 6942069420
+TitlePicsMode = User
+TitlePicsName = SRBZ_TTL
+TitlePicsScale = 3
 
 # Unlock the funny unlockables
 
