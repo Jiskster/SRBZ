@@ -15,19 +15,6 @@ Unlockable 23
 
 ## SURVIVAL MAP START
 
-Level C0
-Levelname = Test Map
-Subtitle = SRBZ
-Act = 0
-Music = GFZ2
-TypeOfLevel = SRBZ
-NextLevel = C0
-SkyNum = 1
-NoZone = True
-SelectHeading = SRBZ Survival Maps
-Lua.srbz_timelimit = 1
-Lua.hidefromvote = true
-
 Level J0
 Levelname = Stonewood
 Subtitle = A very dark town.
