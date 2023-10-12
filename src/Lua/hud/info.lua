@@ -87,7 +87,7 @@ SRBZ.infohud = function(v, player)
 		end
 		-- [Event Timer HUD] --
 		
-		for i,timer in ipairs(SRBZ.MapTimers) do 
+		for i,timer in ipairs(SRBZ:GetActiveTimers()) do 
 			local event_name_string = ("# "..timer.name.." #") or "Event Name Error"
 			local event_time_string = ("* "..G_TicsToMTIME(timer.time).." *") or "Failed To Get Event Time"
 			local event_color
