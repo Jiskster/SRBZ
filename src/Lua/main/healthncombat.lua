@@ -121,6 +121,7 @@ addHook("MobjDamage", function(mo, inf, src, dmg)
 end)
 
 --ram into players as zombie
+/*
 addHook("MobjMoveCollide", function(thing,tmthing)
 	if (gametype ~= GT_SRBZ) return end
 	if (SRBZ.game_ended) then return end
@@ -135,6 +136,7 @@ addHook("MobjMoveCollide", function(thing,tmthing)
 		end
 	end
 end)
+*/
 
 addHook("MobjSpawn", function(mobj)
 	if gametype ~= GT_SRBZ then return end
