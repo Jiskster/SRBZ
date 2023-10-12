@@ -40,6 +40,19 @@ NoZone = True
 SelectHeading = SRBZ Survival Maps
 Lua.srbz_timelimit = 7
 
+Level J2
+Levelname = Roblox Obby
+Subtitle = Easy parkour
+Act = 0
+SkyNum = 52
+Music = RBXO
+TypeOfLevel = SRBZ
+NextLevel = J2
+NoZone = True
+SelectHeading = SRBZ Survival Maps
+Lua.srbz_timelimit = 7
+Lua.srbz_noabilities = true
+
 Level J3
 Levelname = Ice Mountain
 Subtitle = Squares, Pits and Trees.
