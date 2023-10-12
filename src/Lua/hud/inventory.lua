@@ -16,56 +16,58 @@ SRBZ.inventoryhud = function(v, player)
 	end
 	local sel_y = 176*FU
 	
-	for i=1,SRBZ:FetchInventoryLimit(player) do
-		local x = 116*FU
-		local y = 176*FU
-		local overone_xpos = ((i-1)*20)*FU
-		local iconscale = FU
-		
-		if player.shop_open then 
-			y = 146*FU
-			sel_y = y
-		end
-		local patch
-		
-		if i > 1 then
-			x = $ + overone_xpos
-		end
-		
-		if SRBZ:FetchInventory(player)[i] then
-			if SRBZ:FetchInventory(player)[i].icon then
-				patch = v.cachePatch(SRBZ:FetchInventory(player)[i].icon)
+	if SRBZ:FetchInventoryLimit(player) and type(SRBZ:FetchInventoryLimit(player)) == "number" then
+		for i=1,SRBZ:FetchInventoryLimit(player) do
+			local x = 116*FU
+			local y = 176*FU
+			local overone_xpos = ((i-1)*20)*FU
+			local iconscale = FU
+			
+			if player.shop_open then 
+				y = 146*FU
+				sel_y = y
+			end
+			local patch
+			
+			if i > 1 then
+				x = $ + overone_xpos
+			end
+			
+			if SRBZ:FetchInventory(player)[i] then
+				if SRBZ:FetchInventory(player)[i].icon then
+					patch = v.cachePatch(SRBZ:FetchInventory(player)[i].icon)
+				else
+					patch = v.cachePatch("BLANKIND")
+				end
+				if SRBZ:FetchInventory(player)[i].iconscale then
+					iconscale = SRBZ:FetchInventory(player)[i].iconscale
+				end
 			else
 				patch = v.cachePatch("BLANKIND")
 			end
-			if SRBZ:FetchInventory(player)[i].iconscale then
-				iconscale = SRBZ:FetchInventory(player)[i].iconscale
+			
+			-- weapon icons
+			if SRBZ:FetchInventory(player)[i] then
+				v.drawStretched(x, y, iconscale, iconscale, patch, V_SNAPTOBOTTOM)
+			else
+				v.drawStretched(x, y, iconscale, iconscale, patch, V_SNAPTOBOTTOM|V_TRANSLUCENT)
 			end
-		else
-			patch = v.cachePatch("BLANKIND")
-		end
-		
-		-- weapon icons
-		if SRBZ:FetchInventory(player)[i] then
-			v.drawStretched(x, y, iconscale, iconscale, patch, V_SNAPTOBOTTOM)
-		else
-			v.drawStretched(x, y, iconscale, iconscale, patch, V_SNAPTOBOTTOM|V_TRANSLUCENT)
-		end
 
-		if SRBZ:FetchInventory(player)[i] then
-			-- item count
-			if SRBZ:FetchInventory(player)[i].count and SRBZ:FetchInventory(player)[i].limited then
-				v.drawString(x, y, tostring(SRBZ:FetchInventory(player)[i].count), V_SNAPTOBOTTOM, "thin-fixed")
-			elseif SRBZ:FetchInventory(player)[i].ammo ~= nil then -- ammo count
-				local ammo = tostring(SRBZ:FetchInventory(player)[i].ammo)
-				
-				if SRBZ:FetchInventory(player)[i].ammo then
-					v.drawString(x, y, ammo, V_SNAPTOBOTTOM, "thin-fixed")
-				else
-					if (leveltime/4)%2 == 0 then
-						v.drawString(x, y, "\x85"..ammo, V_SNAPTOBOTTOM, "thin-fixed")
-					else
+			if SRBZ:FetchInventory(player)[i] then
+				-- item count
+				if SRBZ:FetchInventory(player)[i].count and SRBZ:FetchInventory(player)[i].limited then
+					v.drawString(x, y, tostring(SRBZ:FetchInventory(player)[i].count), V_SNAPTOBOTTOM, "thin-fixed")
+				elseif SRBZ:FetchInventory(player)[i].ammo ~= nil then -- ammo count
+					local ammo = tostring(SRBZ:FetchInventory(player)[i].ammo)
+					
+					if SRBZ:FetchInventory(player)[i].ammo then
 						v.drawString(x, y, ammo, V_SNAPTOBOTTOM, "thin-fixed")
+					else
+						if (leveltime/4)%2 == 0 then
+							v.drawString(x, y, "\x85"..ammo, V_SNAPTOBOTTOM, "thin-fixed")
+						else
+							v.drawString(x, y, ammo, V_SNAPTOBOTTOM, "thin-fixed")
+						end
 					end
 				end
 			end

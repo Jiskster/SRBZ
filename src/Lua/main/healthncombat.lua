@@ -386,10 +386,12 @@ addHook("PreThinkFrame", function()
 			end	
 			
 			-- clear items below 0 count
-			for i=1,SRBZ:FetchInventoryLimit(player) do
-				if SRBZ:FetchInventory(player)[i] then
-					if SRBZ:FetchInventory(player)[i].limited and SRBZ:FetchInventory(player)[i].count <= 0 then
-						table.remove(SRBZ:FetchInventory(player),i)
+			if SRBZ:FetchInventoryLimit(player) and type(SRBZ:FetchInventoryLimit(player)) == "number" then
+				for i=1,SRBZ:FetchInventoryLimit(player) do
+					if SRBZ:FetchInventory(player)[i] then
+						if SRBZ:FetchInventory(player)[i].limited and SRBZ:FetchInventory(player)[i].count <= 0 then
+							table.remove(SRBZ:FetchInventory(player),i)
+						end
 					end
 				end
 			end
@@ -501,6 +503,17 @@ addHook("MobjMoveCollide", function(tmthing, thing)
 			P_KillMobj(thing, tmthing, tmthing.target)
 			S_StartSound(tmthing, sfx_pop)
 			P_RemoveMobj(thing)
+		end
+	end
+end)
+
+addHook("MobjMoveCollide", function(tmthing, thing)
+	if tmthing and tmthing.valid and thing and thing.valid then
+		if (tmthing.target and tmthing.flags & MF_MISSILE and tmthing.target.player and thing.player) then
+			local team = thing.player.zteam or thing.target.player.zteam
+			if tmthing.target.player.zteam == team then
+				return false
+			end
 		end
 	end
 end)

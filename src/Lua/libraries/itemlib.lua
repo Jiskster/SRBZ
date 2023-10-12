@@ -44,6 +44,8 @@ function SRBZ:FetchInventory(player)
 				return player["srbz_info"].survivor_inventory
 			elseif player["srbz_info"].zombie_inventory and player.zteam == 2 then
 				return player["srbz_info"].zombie_inventory
+			else
+				return player["srbz_info"].survivor_inventory
 			end
 		end
 	end
