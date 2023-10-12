@@ -7,5 +7,5 @@ SRBZ:CreateItem("Bounce Ring",  {
 	damage = 11,
 	fuse = 10*TICRATE,
 	flags2 = MF2_BOUNCERING,
-	price = 220,
+	price = 520,
 })
