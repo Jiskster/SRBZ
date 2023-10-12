@@ -81,7 +81,9 @@ addHook("MobjDamage", function(mo, inf, src, dmg)
 			S_StartSound(mo,mobjinfo[mo.type].painsound)
 		end
 		
-		P_Thrust(mo, inf.angle, knockback)
+		if inf and inf.valid then
+			P_Thrust(mo, inf.angle, knockback)
+		end
 	
 	end
 	
