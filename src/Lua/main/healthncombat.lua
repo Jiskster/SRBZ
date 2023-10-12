@@ -497,6 +497,7 @@ COM_AddCommand("z_sellhand", function(player)
 	end
 end)
 
+-- allow weapons to pop monitors
 addHook("MobjMoveCollide", function(tmthing, thing)
 	if tmthing and tmthing.valid and thing and thing.valid then
 		if tmthing.shotbyplayer and thing.flags & MF_MONITOR then
@@ -507,6 +508,7 @@ addHook("MobjMoveCollide", function(tmthing, thing)
 	end
 end)
 
+-- dont let teammates and teamate's weapons collide with your weapon 
 addHook("MobjMoveCollide", function(tmthing, thing)
 	if tmthing and tmthing.valid and thing and thing.valid then
 		if (tmthing.target and tmthing.flags & MF_MISSILE and tmthing.target.player and thing.player) then
