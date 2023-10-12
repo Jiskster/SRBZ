@@ -41,9 +41,9 @@ states[S_INSTABURST6B] = {SPR_NULL, 0, 1, A_CapeChase, 0, 0, S_NULL}
 
 SRBZ:CreateItem("Insta Burst", {
 	icon = "ZMISHIND",
-	firerate = 25,
+	firerate = 24,
 	sound = sfx_zish1,
-	damage = 11,
+	damage = 20,
 	ontrigger = function(player)
 		local brange = 512*FU
 		local range = 185*FU

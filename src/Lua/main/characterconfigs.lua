@@ -20,7 +20,7 @@ SRBZ.ZombieConfig = {
 	},
 	["alpha"] = {
 		skincolor = SKINCOLOR_ALPHAZOMBIE,
-		normalspeed = 14 * FRACUNIT,
+		normalspeed = 12 * FRACUNIT,
 		health = 140,
 		healthpersurvivor = 10,
 		charability = CA_NONE,
@@ -235,7 +235,7 @@ SRBZ.AddConfig = function(charname, table)
 end
 
 SRBZ.AddConfig("sonic", {
-	normalspeed = 12 * FRACUNIT,
+	normalspeed = 14 * FRACUNIT,
 	health = 55,
 	charability = CA_JUMPTHOK,
 	charability2 = CA2_NONE,
@@ -247,29 +247,31 @@ SRBZ.AddConfig("sonic", {
 })
 
 SRBZ.AddConfig("tails", {
-	normalspeed = 10 * FRACUNIT,
+	normalspeed = 12 * FRACUNIT,
 	health = 80,
 	charability = CA_FLY,
 	charability2 = CA2_NONE,
 	jumpfactor = 17 * FRACUNIT / 19,
 	actionspd = 30*FRACUNIT,
+	sprintboost = 11 * FRACUNIT,
 	desc1 = "Has the brains. Without the plane.",
 	desc2 = "Flies slow. Slower than sonic."
 })
 
 SRBZ.AddConfig("knuckles", {
-	normalspeed = 8 * FRACUNIT,
+	normalspeed = 10 * FRACUNIT,
 	health = 115,
 	charability = CA_GLIDEANDCLIMB,
 	charability2 = CA2_NONE,
 	jumpfactor = 17 * FRACUNIT / 19,
 	actionspd = 12*FRACUNIT,
+	sprintboost = 8 * FRACUNIT,
 	desc1 = "Very Strong feller",
 	desc2 = "Glides slow. The slowest."
 })
 
 SRBZ.AddConfig("amy", {
-	normalspeed = 9 * FRACUNIT,
+	normalspeed = 11 * FRACUNIT,
 	health = 75,
 	charability = CA_TWINSPIN,
 	charability2 = CA2_MELEE,
@@ -279,7 +281,7 @@ SRBZ.AddConfig("amy", {
 })
 
 SRBZ.AddConfig("fang", {
-	normalspeed = 10 * FRACUNIT,
+	normalspeed = 11 * FRACUNIT,
 	health = 85,
 	charability = CA_BOUNCE,
 	charability2 = CA2_GUNSLINGER,
@@ -289,12 +291,13 @@ SRBZ.AddConfig("fang", {
 })
 
 SRBZ.AddConfig("metalsonic", {
-	normalspeed = 11 * FRACUNIT,
+	normalspeed = 13 * FRACUNIT,
 	health = 75,
 	charability = CA_JUMPBOOST,
 	charability2 = CA2_NONE,
 	jumpfactor = 17 * FRACUNIT / 19,
 	charflags = SF_MACHINE,
+	sprintboost = 9 * FRACUNIT,
 	desc1 = "He might the the real sonic.",
 	desc2 = "Jump Height depends on speed.",
 })
