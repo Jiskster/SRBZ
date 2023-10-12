@@ -12,12 +12,16 @@ SRBZ.rubypickupdelay = CV_RegisterVar({
 })
 
 function A_RubyDrop(actor, var1)
-	for i=1,var1 do
+	local rubyamount = var1
+	if mapheaderinfo[map].srbz_zombieswarm then
+		rubyamount = $ / 2
+	end
+	for i=1,rubyamount do
 		local the_ruby = P_SpawnMobjFromMobj(actor,0,0,10*FU,MT_CRRUBY)
 		the_ruby.fuse = 16*TICRATE
 		P_SetObjectMomZ(the_ruby, P_RandomRange(5,7)<<16)
 
-		if var1 > 1 then
+		if rubyamount > 1 then
 			local angle = P_RandomFixed() * FU
 			P_InstaThrust(the_ruby, angle, 2*FU)
 		end
