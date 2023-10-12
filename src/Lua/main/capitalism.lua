@@ -13,7 +13,7 @@ SRBZ.rubypickupdelay = CV_RegisterVar({
 
 function A_RubyDrop(actor, var1)
 	local rubyamount = var1
-	if mapheaderinfo[map].srbz_zombieswarm then
+	if mapheaderinfo[gamemap].srbz_zombieswarm then
 		rubyamount = $ / 2
 	end
 	for i=1,rubyamount do
