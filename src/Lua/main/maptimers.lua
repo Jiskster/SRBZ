@@ -53,42 +53,60 @@ SRBZ.maptimerdebug = CV_RegisterVar({
 
 SRBZ.MapTimers = {}
 
-SRBZ.AddMapTimer = function(timer_name,map_number,map_time,onend,extra)
-	if (not timer_name) then 
-		error("Name of the Timer is not specified") end
-	if (not map_number) then 
-		error("Map Number is not specified") end
-	if (not map_time) then 
-		error("Time is not specified") end
+function SRBZ.AddMapTimer()
+	print("SRBZ.AddMapTimer is deprecated, try SRBZ:AddTimer instead")
+end
 
-	if type(timer_name) ~= "string" then 
-		error("Timer Name should be string") end
-	if type(map_number) ~= "number" then 
-		error("Map Number should be number (mapID)") end
-	if type(map_time) ~= "number" then 
-		error("Time should be number in ticks") end
-	if onend and type(onend) ~= "function" then
-		error("Onend should be a function") end
-	if extra and type(extra) ~= "table" then
-		error("Extra should be a table") end
+function SRBZ:AddTimer(_name,_table) 
+	if _name == nil then
+		error("Timer: Arg1 is required (Arg1 _name)")
+	elseif type(_name) ~= "string" then
+		error("Timer: Arg1 must be string (Arg1 _name)")
+	end
+	
+	if _table == nil then
+		error("Timer: Table is required (Arg2 _table)")
+	elseif type(_table) ~= "table" then
+		error("Timer: Arg2 must be table (Arg2 _table)")
+	end
+	
+	local _table_recieve = _table
+	local _next_index = #SRBZ.MapTimers + 1
+	
+	_table_recieve.name = $ or _name -- why would you wanna change after tho? lol
+	_table_recieve.active = $ or false
+	_table_recieve.time = $ or 15*TICRATE
+	_table_recieve.original_time = _table_recieve.time
+	
+	SRBZ.MapTimers[_next_index] = _table_recieve
+	
+	return SRBZ.MapTimers[#SRBZ.MapTimers]
+end
 
-	table.insert(SRBZ.MapTimers,{
-		name = timer_name,
-		map = map_number,
-		time = map_time,
-		on_end = onend,
-		extrainfo = extra,
-	})
-	return #SRBZ.MapTimers
+function SRBZ:ResetTimer(_timer)
+	_timer.active = false
+	_timer.time = _timer.original_time
+end
+
+function SRBZ:GetActiveTimers()
+	local activetimers = {}
+	for i,timer in ipairs(SRBZ.MapTimers) do
+		if timer.active then
+			table.insert(activetimers, timer)
+		end
+	end
+	return activetimers
 end
 
 addHook("MapLoad", function()
-	SRBZ.MapTimers = {}
+	for i,timer in ipairs(SRBZ.MapTimers) do
+		SRBZ:ResetTimer(timer)
+	end
 end)
 
 addHook("ThinkFrame",do
 	for i,timer in ipairs(SRBZ.MapTimers) do
-		if (gamemap == timer.map)
+		if (timer.active) then
 			if (SRBZ.maptimerdebug.value) then
 				print(timer.name..": "..(timer.time/35)) end
 
@@ -117,12 +135,12 @@ addHook("ThinkFrame",do
 				*/
 				
 			end
-			if ((timer.time <= 0) and (timer.on_end)) then 
-				timer.on_end(i, timer.name)
+			if timer.time <= 0 then 
+				if (timer.on_end) then
+					timer.on_end(i, timer.name)
+				end
+				timer.active = false
 			end
-		end
-		if timer.time <= 0 then
-			table.remove(SRBZ.MapTimers,i)
 		end
 	end
 end)

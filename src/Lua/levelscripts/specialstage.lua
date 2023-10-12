@@ -38,52 +38,52 @@ local function SS_Tele3()
 	end
 end
 
+local SpecialStage1_Timer = SRBZ:AddTimer("Special Stage 1",{
+	time = 60*TICRATE,
+	on_end = function(timernum,timername)
+		SS_Tele1()
+		P_LinedefExecute(43)
+		P_LinedefExecute(49)
+	end,
+	extrainfo = {color = SKINCOLOR_MINT}
+}) 
+
+local SpecialStage2_Timer = SRBZ:AddTimer("Special Stage 2",{
+	time = 60*TICRATE,
+	on_end = function(timernum,timername)
+		SS_Tele2()
+		P_LinedefExecute(52)
+		P_LinedefExecute(44)
+	end,
+	extrainfo = {color = SKINCOLOR_BUBBLEGUM}
+}) 
+
+local SpecialStage3_Timer = SRBZ:AddTimer("Special Stage 3",{
+	time = 120*TICRATE,
+	on_end = function(timernum,timername)
+		SS_Tele3()
+		P_LinedefExecute(53)
+		P_LinedefExecute(46)
+	end,
+	extrainfo = {color = SKINCOLOR_SKY}
+}) 
+
 local function SS_Objection1()
 	chatprint("\x83\Multiplayer Special Stage 1")
 	chatprint("Survive for\x83 60 \x80seconds")
-	SRBZ.AddMapTimer(
-		"Special Stage 1",
-		ss_mapnum,
-		60*TICRATE,
-		function(timernum,timername)
-			SS_Tele1()
-			P_LinedefExecute(43)
-			P_LinedefExecute(49)
-		end,
-		{color = SKINCOLOR_MINT}
-	)
+	SpecialStage1_Timer.active = true
 end
 
 local function SS_Objection2()
 	chatprint("\x81\Multiplayer Special Stage 2")
 	chatprint("Survive for\x83 60 \x80seconds")
-	SRBZ.AddMapTimer(
-		"Special Stage 2",
-		ss_mapnum,
-		60*TICRATE,
-		function(timernum,timername)
-			SS_Tele2()
-			P_LinedefExecute(52)
-			P_LinedefExecute(44)
-		end,
-		{color = SKINCOLOR_BUBBLEGUM}
-	)
+	SpecialStage2_Timer.active = true
 end
 
 local function SS_Objection3()
 	chatprint("\x84\Multiplayer Special Stage 3")
 	chatprint("Survive for\x85 120 \x80seconds")
-	SRBZ.AddMapTimer(
-		"Special Stage 3",
-		ss_mapnum,
-		120*TICRATE,
-		function(timernum,timername)
-			SS_Tele3()
-			P_LinedefExecute(53)
-			P_LinedefExecute(46)
-		end,
-		{color = SKINCOLOR_SKY}
-	)
+	SpecialStage3_Timer.active = true
 end
 
 local function SS_Objection4()

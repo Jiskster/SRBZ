@@ -19,8 +19,8 @@ addHook("NetVars", function(net)
 	
 	for i,v in ipairs(SRBZ.MapTimers) do
 		v.name = net($);
-		v.map = net($);
 		v.time = net($);
+		v.active = net($);
 	end
 end)
 

@@ -90,135 +90,134 @@ local function undertale_BattleTele4Zm()
 	end
 end
 
+local Undertale_DoorTimer = SRBZ:AddTimer("Door 1",{
+	time = 45*TICRATE,
+	on_end = function(timernum,timername)
+		P_LinedefExecute(31)
+		S_ChangeMusic("UTRNS",true,player)
+	end,
+}) 
+
+local Undertale_Prebattle1Timer = SRBZ:AddTimer("Incoming Zombies",{
+	time = 20*TICRATE,
+	on_end = function(timernum,timername)
+		undertale_BattleTele1Zm()
+	end,
+	extrainfo = {
+		color = SKINCOLOR_FOREST,
+		[1] = {
+			event_time = 5*TICRATE,
+			event_func = do
+				undertale_BattleTele1Surv()
+			end
+		},
+		[2] = {
+			event_time = 6*TICRATE,
+			event_func = do
+				S_StartSound(player, sfx_utbtl)
+			end
+		}
+	}
+}) 
+
+local Undertale_Battle1Timer = SRBZ:AddTimer("Survive Zombies",{
+	time = 60*TICRATE,
+	extrainfo = {
+		color = SKINCOLOR_FOREST,
+		[1] = {
+			event_time = 1*TICRATE,
+			event_func = do
+				S_StartSound(player, sfx_utesc)
+				S_ChangeMusic("UTRNS",true,player)
+				undertale_BattleTele2Zm()
+				undertale_BattleTele2Surv()
+			end
+		},
+		[2] = {
+			event_time = 30*TICRATE,
+			event_func = do
+				S_StartSound(nil, sfx_oldrad)
+				chatprint("\x82\ 30 \x80seconds remaining")
+			end
+		},
+		[3] = {
+			event_time = 15*TICRATE,
+			event_func = do
+				S_StartSound(nil, sfx_oldrad)
+				chatprint("\x82\ 15 \x80seconds remaining")
+			end
+		},
+		[4] = {
+			event_time = 5*TICRATE,
+			event_func = do
+				S_StartSound(nil, sfx_oldrad)
+				chatprint("\x83\ 5 \x80seconds remaining")
+			end
+		}
+	}
+}) 
+
+local Undertale_Prebattle2Timer = SRBZ:AddTimer("Toriel Encounter",{
+	time = 20*TICRATE,
+	on_end = function(timernum,timername)
+		undertale_BattleTele3Surv()
+		undertale_BattleTele3Zm()
+	end,
+	extrainfo = {
+		color = SKINCOLOR_WHITE,
+		-- Presidential Speech
+		[1] = {
+			event_time = 19*TICRATE,
+			event_func = do
+				chatprint("\x89\<Toriel>\x80 You want to leave so badly? Hmph...")
+				S_StartSound(player, sfx_trtlk)
+			end
+		},
+		[2] = {
+			event_time = 15*TICRATE,
+			event_func = do
+				chatprint("\x89\<Toriel>\x80 You are just like the others. There is only one solution to this")
+				S_StartSound(player, sfx_trtlk)
+			end
+		},
+		[3] = {
+			event_time = 5*TICRATE,
+			event_func = do
+				chatprint("\x89\<Toriel>\x80 Prove yourself... Prove to me you are strong enough to survive.")
+				S_StartSound(player, sfx_trtlk)
+			end
+		},
+		[4] = {
+			event_time = 1*TICRATE,
+			event_func = do
+				S_StartSound(player, sfx_utbtl)
+			end
+		}
+	}
+}) 
+
 local function undertale_door1()
-	chatprint("\x89\Door \x80will open in\x85 60 \x80seconds")
+	chatprint("\x89\Door \x80will open in\x85 45 \x80seconds")
 	S_StartSound(player, sfx_utdgr)
 	
-	SRBZ.AddMapTimer(
-		"Door 1",
-		ut_mapnum,
-		60*TICRATE,
-		function(timernum,timername)
-			P_LinedefExecute(31)
-			S_ChangeMusic("UTRNS",true,player)
-		end
-	)
+	Undertale_DoorTimer.active = true
 end
 
 local function undertale_Prebattle1()
 	chatprint("\x8B\Zombies \x80will appear in\x82 20 \x80seconds")
 	S_StartSound(player, sfx_utdgr)
-	SRBZ.AddMapTimer(
-		"Incoming Zombies",
-		ut_mapnum,
-		20*TICRATE,
-		function(timernum,timername)
-			undertale_BattleTele1Zm()
-		end,
-		{
-			color = SKINCOLOR_FOREST,
-			[1] = {
-				event_time = 5*TICRATE,
-				event_func = do
-					undertale_BattleTele1Surv()
-				end
-			},
-			[2] = {
-				event_time = 6*TICRATE,
-				event_func = do
-					S_StartSound(player, sfx_utbtl)
-				end
-			}
-		}
-	)
+	Undertale_Prebattle1Timer.active = true
 end
 
 local function undertale_Startbattle1()
 	chatprint("Survive for\x85 60 \x80seconds")
 	S_ChangeMusic("UTBTL2",true,player)
 	S_StartSound(player, sfx_utdgr)
-	SRBZ.AddMapTimer(
-		"Survive Zombies",
-		ut_mapnum,
-		60*TICRATE,
-		nil, 
-		{
-			color = SKINCOLOR_FOREST,
-			[1] = {
-				event_time = 1*TICRATE,
-				event_func = do
-					S_StartSound(player, sfx_utesc)
-					S_ChangeMusic("UTRNS",true,player)
-					undertale_BattleTele2Zm()
-					undertale_BattleTele2Surv()
-				end
-			},
-			[2] = {
-				event_time = 30*TICRATE,
-				event_func = do
-					S_StartSound(nil, sfx_oldrad)
-					chatprint("\x82\ 30 \x80seconds remaining")
-				end
-			},
-			[3] = {
-				event_time = 15*TICRATE,
-				event_func = do
-					S_StartSound(nil, sfx_oldrad)
-					chatprint("\x82\ 15 \x80seconds remaining")
-				end
-			},
-			[4] = {
-				event_time = 5*TICRATE,
-				event_func = do
-					S_StartSound(nil, sfx_oldrad)
-					chatprint("\x83\ 5 \x80seconds remaining")
-				end
-			}
-		}
-	)
+	Undertale_Battle1Timer.active = true
 end
 
 local function undertale_Prebattle2()
-	SRBZ.AddMapTimer(
-		"Toriel Encounter",
-		ut_mapnum,
-		20*TICRATE,
-		function(timernum,timername)
-			undertale_BattleTele3Surv()
-			undertale_BattleTele3Zm()
-		end,
-		{
-			color = SKINCOLOR_WHITE,
-			-- Presidential Speech
-			[1] = {
-				event_time = 19*TICRATE,
-				event_func = do
-					chatprint("\x89\<Toriel>\x80 You want to leave so badly? Hmph...")
-					S_StartSound(player, sfx_trtlk)
-				end
-			},
-			[2] = {
-				event_time = 15*TICRATE,
-				event_func = do
-					chatprint("\x89\<Toriel>\x80 You are just like the others. There is only one solution to this")
-					S_StartSound(player, sfx_trtlk)
-				end
-			},
-			[3] = {
-				event_time = 5*TICRATE,
-				event_func = do
-					chatprint("\x89\<Toriel>\x80 Prove yourself... Prove to me you are strong enough to survive.")
-					S_StartSound(player, sfx_trtlk)
-				end
-			},
-			[4] = {
-				event_time = 1*TICRATE,
-				event_func = do
-					S_StartSound(player, sfx_utbtl)
-				end
-			}
-		}
-	)
+	Undertale_Prebattle2Timer.active = true
 end
 
 local function undertale_Startbattle2()
