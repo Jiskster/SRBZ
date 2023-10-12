@@ -102,18 +102,6 @@ SkyNum = 1
 SelectHeading = SRBZ Survival Maps
 Lua.srbz_timelimit = 9
 
-Level J7
-Levelname = Secret Lab
-Subtitle = Containment Breach.
-Act = 0
-Music = SCP1
-TypeOfLevel = SRBZ
-NextLevel = J7
-SkyNum = 21
-NoZone = True
-SelectHeading = SRBZ Survival Maps
-Lua.srbz_timelimit = 7
-
 Level N2
 Levelname = The Database Z
 Subtitle = The Digital dimension
