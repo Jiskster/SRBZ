@@ -182,10 +182,20 @@ hud.add( function(v, player, camera)
 		--local nameflags = skincolors[tmo.skincolor].chatcolor
 		local distedit = max(0, distance - ((distlimit*FU)>>1)) * 2
 		local trans = min(9, (((distedit * 10) >> 16) / distlimit)) * V_10TRANS
+		
 		if name then
 			customhud.CustomFontString(v,hpos,vpos,name, "TNYFC", trans, namefont , FRACUNIT, namecolor)
 			if not tmo.dontshowhealth then
 				customhud.CustomFontString(v,hpos,vpos+(lineheight*FU),health, "TNYFC",trans, ringfont , FRACUNIT, textcolor)
+			end
+			
+			if tmo.player and tmo.player.valid then
+				if SRBZ:FetchInventorySlot(tmo.player) then
+					local icon = v.cachePatch(SRBZ:FetchInventorySlot(tmo.player).icon)
+					local iconscale = SRBZ:FetchInventorySlot(tmo.player).iconscale or FRACUNIT
+					
+					v.drawScaled(hpos, vpos + 16*FU, iconscale/2, icon, trans) -- draw weaponicon
+				end
 			end
 		end
 		--v.drawString(hpos, vpos, name, nameflags|trans|V_ALLOWLOWERCASE, namefont)
