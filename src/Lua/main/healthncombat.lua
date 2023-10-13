@@ -486,7 +486,7 @@ COM_AddCommand("z_sellhand", function(player)
 		
 		CONS_Printf(player,toprint)
 		
-		inventory[player["srbz_info"].inventory_selection] = nil
+		table.remove(inventory, player["srbz_info"].inventory_selection)
 		
 		player.rubies = $ + item_cost
 		

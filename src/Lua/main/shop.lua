@@ -249,7 +249,8 @@ addHook("PreThinkFrame", do
                         if hasrequiredrubies and not player["srbz_info"].shop_confirmscreen then
                             S_StartSound(nil, sfx_s3kb8, player)
                             player["srbz_info"].shop_confirmscreen = true
-                        elseif player["srbz_info"].shop_confirmscreen and hasrequiredrubies then
+                        elseif player["srbz_info"].shop_confirmscreen and hasrequiredrubies then 
+							-- actually buy
                             player.rubies = $ - player.shop_person.shop[player["srbz_info"].shop_selection][1]
                             -- copied from SRBZ:FetchInventory()
                             if player["srbz_info"].survivor_inventory and player.zteam == 1 then
