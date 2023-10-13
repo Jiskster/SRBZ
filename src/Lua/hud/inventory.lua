@@ -56,17 +56,20 @@ SRBZ.inventoryhud = function(v, player)
 			if SRBZ:FetchInventory(player)[i] then
 				-- item count
 				if SRBZ:FetchInventory(player)[i].count and SRBZ:FetchInventory(player)[i].limited then
-					v.drawString(x, y, tostring(SRBZ:FetchInventory(player)[i].count), V_SNAPTOBOTTOM, "thin-fixed")
+					local count = tostring(SRBZ:FetchInventory(player)[i].count)
+					customhud.CustomFontString(v,x,y,count, "TNYFC", V_SNAPTOBOTTOM, nil, FRACUNIT, SKINCOLOR_CLOUDY)
+					--v.drawString(x, y, tostring(SRBZ:FetchInventory(player)[i].count), V_SNAPTOBOTTOM, "thin-fixed")
 				elseif SRBZ:FetchInventory(player)[i].ammo ~= nil then -- ammo count
 					local ammo = tostring(SRBZ:FetchInventory(player)[i].ammo)
 					
 					if SRBZ:FetchInventory(player)[i].ammo then
 						v.drawString(x, y, ammo, V_SNAPTOBOTTOM, "thin-fixed")
+						customhud.CustomFontString(v,x,y,ammo, "TNYFC", V_SNAPTOBOTTOM, nil, FRACUNIT, SKINCOLOR_AQUAMARINE)
 					else
 						if (leveltime/4)%2 == 0 then
-							v.drawString(x, y, "\x85"..ammo, V_SNAPTOBOTTOM, "thin-fixed")
+							customhud.CustomFontString(v,x,y,ammo, "TNYFC", V_SNAPTOBOTTOM, nil, FRACUNIT, SKINCOLOR_CRIMSON)
 						else
-							v.drawString(x, y, ammo, V_SNAPTOBOTTOM, "thin-fixed")
+							customhud.CustomFontString(v,x,y,ammo, "TNYFC", V_SNAPTOBOTTOM, nil, FRACUNIT, SKINCOLOR_AQUAMARINE)
 						end
 					end
 				end
