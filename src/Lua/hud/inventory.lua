@@ -79,23 +79,19 @@ SRBZ.inventoryhud = function(v, player)
 	
 	if SRBZ:FetchInventorySlot(player) and SRBZ:FetchInventorySlot(player).displayname then
 		local iteminfo = ""
+		local itemname = SRBZ:FetchInventorySlot(player).displayname
+		local itemcolor = SRBZ:FetchInventorySlot(player).color or SKINCOLOR_CLOUDY
+		
 		if SRBZ:FetchInventorySlot(player).damage then
-			iteminfo = $ + "\x85".."DMG: "..SRBZ:FetchInventorySlot(player).damage.." "
+			iteminfo = $ + "Damage: "..SRBZ:FetchInventorySlot(player).damage.." "
 		end
-		if SRBZ:FetchInventorySlot(player).firerate then
-			local firerate = SRBZ:FetchInventorySlot(player).firerate
-			iteminfo = $ + "\x84".."RATE: "..G_TicsToSeconds(firerate).."."..G_TicsToCentiseconds(firerate).." "
-		end
-		/*
-		if SRBZ:FetchInventorySlot(player).knockback then
-			iteminfo = $ + "\x83".."KB: "..SRBZ:FetchInventorySlot(player).knockback/FU.." "
-		end
-		*/
-		v.drawString(115*FU, sel_y-(9*FU), SRBZ:FetchInventorySlot(player).displayname, V_SNAPTOBOTTOM|V_TRANSLUCENT,"thin-fixed")
-		v.drawString(115*FU, sel_y-(17*FU), iteminfo, V_SNAPTOBOTTOM|V_TRANSLUCENT,"thin-fixed")
+		
+		customhud.CustomFontString(v,115*FU,sel_y-(10*FU),itemname, "TNYFC", V_SNAPTOBOTTOM, nil, FRACUNIT, itemcolor)
+		customhud.CustomFontString(v,115*FU,sel_y-(18*FU),iteminfo, "TNYFC", V_SNAPTOBOTTOM, nil, FRACUNIT, SKINCOLOR_CRIMSON)
 	else
-		v.drawString(115*FU, sel_y-(9*FU), "EMPTY", V_SNAPTOBOTTOM|V_TRANSLUCENT,"thin-fixed")
+		customhud.CustomFontString(v,115*FU,sel_y-(10*FU),"EMPTY", "TNYFC", V_SNAPTOBOTTOM, nil, FRACUNIT, SKINCOLOR_CLOUDY)
 	end
+	
 	-- weapon selection 
 	v.drawStretched(sel_x-(2*FU), sel_y-(2*FU), FU, FU, s_patch, V_SNAPTOBOTTOM)
 	if SRBZ:FetchInventorySlot(player) then
