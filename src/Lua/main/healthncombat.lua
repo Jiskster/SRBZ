@@ -508,6 +508,34 @@ addHook("MobjMoveCollide", function(tmthing, thing)
 	end
 end)
 
+-- amy heart healing
+addHook("MobjMoveCollide", function(heart, victim)
+	if heart and heart.valid and victim and victim.valid then
+		local imo = heart.target
+		if imo and imo.valid and imo.player and imo.player.valid then
+			if victim.player and victim.player.valid then
+				local inf_player = imo.player
+				local victim_player = victim.player 
+				
+				if (inf_player.zteam == victim_player.zteam) 
+				and not (imo == victim) and L_ZCollide(heart,victim) then
+					if victim.health + 3 > victim.maxhealth then
+						victim.health = victim.maxhealth
+					else
+						victim.health = $ + 3
+					end
+					
+					local pinkghost = P_SpawnGhostMobj(victim)
+					pinkghost.color = SKINCOLOR_ROSY
+					
+					return true
+				end
+				heart.shotbyplayer = true
+			end
+		end
+	end
+end, MT_LHRT)
+
 -- dont let teammates and teamate's weapons collide with your weapon 
 addHook("MobjMoveCollide", function(tmthing, thing)
 	if tmthing and tmthing.valid and thing and thing.valid then

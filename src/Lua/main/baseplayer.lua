@@ -1,5 +1,6 @@
 freeslot("sfx_zjump")
 sfxinfo[sfx_zjump].caption = "Jump"
+mobjinfo[MT_LHRT].forceknockback = 20*FRACUNIT
 SRBZ.JumpSprintFatigue = 5*FRACUNIT
 
 -- some stuff that player needs
