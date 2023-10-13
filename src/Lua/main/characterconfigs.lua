@@ -272,7 +272,7 @@ SRBZ.AddConfig("knuckles", {
 
 SRBZ.AddConfig("amy", {
 	normalspeed = 11 * FRACUNIT,
-	health = 75,
+	health = 45,
 	charability = CA_TWINSPIN,
 	charability2 = CA2_MELEE,
 	jumpfactor = 20 * FRACUNIT / 19,
