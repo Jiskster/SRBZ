@@ -184,5 +184,17 @@ NoZone = true
 Subtitle = It's a Forest!
 Lua.hidefromvote = true
 
+Level EB
+LevelName = Cave of the Past
+SubTitle = The war against Giygas?
+Act = 0
+NoZone = true
+Music = COTP
+TypeOfLevel = SRBZ
+SelectHeading = SRBZ Survival Maps
+Lua.srbz_timelimit = 15
+NextLevel = T3
+SkyNum = 7300
+
 Freeslot
 SFX_DAMFLL
