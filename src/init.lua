@@ -66,5 +66,6 @@ dofile "levelscripts/thefarland.lua"
 dofile "levelscripts/minecraft.lua"
 dofile "levelscripts/specialstage.lua"
 dofile "levelscripts/undertale.lua"
+dofile "levelscripts/caveofthepast.lua"
 
 dofile "main/netvars.lua"
