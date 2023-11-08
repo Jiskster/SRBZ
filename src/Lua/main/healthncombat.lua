@@ -65,7 +65,7 @@ addHook("MobjDamage", function(mo, inf, src, dmg)
 			}
 			local chosen_hurtsound = zombie_hurtsounds[P_RandomRange(1,2)]
 			if inf and inf.valid then
-				P_Thrust(mo, inf.angle, 20*FRACUNIT)
+				P_Thrust(mo, inf.angle, knockback)
 			end
 			
 			
