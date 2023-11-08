@@ -140,6 +140,30 @@ SkyboxScaleY = -2
 lua.takis_iscoldarea = 1
 Lua.srbz_timelimit = 6
 
+Level EB
+LevelName = Cave of the Past
+SubTitle = The war against Giygas?
+Act = 0
+NoZone = true
+Music = COTP
+TypeOfLevel = SRBZ
+SelectHeading = SRBZ Survival Maps
+Lua.srbz_timelimit = 15
+NextLevel = T3
+SkyNum = 7300
+
+Level N0
+Levelname = Ancient Catacombs
+Subtitle = Lost in the creepy catacombs
+Act = 0
+Music = ACZEM
+TypeOfLevel = SRBZ
+NextLevel = N0
+SkyNum = 11
+Weather = 1
+NoZone = True
+SelectHeading = SRBZ Maps
+
 ## SWARM MAP START
 
 Level V0
@@ -183,18 +207,6 @@ SkyNum = 40
 NoZone = true
 Subtitle = It's a Forest!
 Lua.hidefromvote = true
-
-Level EB
-LevelName = Cave of the Past
-SubTitle = The war against Giygas?
-Act = 0
-NoZone = true
-Music = COTP
-TypeOfLevel = SRBZ
-SelectHeading = SRBZ Survival Maps
-Lua.srbz_timelimit = 15
-NextLevel = T3
-SkyNum = 7300
 
 Freeslot
 SFX_DAMFLL
