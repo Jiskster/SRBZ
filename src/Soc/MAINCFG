@@ -111,7 +111,7 @@ TypeOfLevel = SRBZ
 NextLevel = N2
 SkyNum = 99
 NoZone = True
-SelectHeading = SRBZ Maps
+SelectHeading = SRBZ Survival Maps
 Lua.srbz_timelimit = 7
 
 Level W1
