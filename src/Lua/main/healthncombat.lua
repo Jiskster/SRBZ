@@ -1,3 +1,10 @@
+SRBZ.survinvtics = CV_RegisterVar({
+	name = "z_survinvtics",
+	defaultvalue = "25",
+	PossibleValue = {MIN = 0, MAX = 350},
+	flags = CV_NETVAR,
+})
+
 SRBZ.LimitMobjHealth = function(mobj)
 	if mobj and mobj.valid then
 		if mobj.health and mobj.maxhealth then
@@ -55,7 +62,7 @@ addHook("MobjDamage", function(mo, inf, src, dmg)
 	
 	if mo.player then
 		if mo.player.zteam == 1 then
-			mo.player.powers[pw_flashing] = 35
+			mo.player.powers[pw_flashing] = SRBZ.survinvtics.value
 			P_FlashPal(mo.player, PAL_NUKE, 2)
 			S_StartSound(mo, sfx_s3kb9)
 		elseif mo.player.zteam == 2 then
