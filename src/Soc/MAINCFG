@@ -162,7 +162,8 @@ NextLevel = N0
 SkyNum = 11
 Weather = 1
 NoZone = True
-SelectHeading = SRBZ Maps
+SelectHeading = SRBZ Survival Maps
+Lua.srbz_timelimit = 10
 
 ## SWARM MAP START
 
