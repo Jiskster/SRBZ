@@ -12,6 +12,9 @@ Spriters:
 "Luigi Budd"
 "W"
 
+Modelers:
+"Marilyn / Speccy"
+
 Mappers:
 "Tuxe" - N/A (Different intrests, problematic community member)
 "Hammito" - N/A (Left the community)
